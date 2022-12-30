@@ -72,41 +72,41 @@ document.getElementById("calculate").onclick = function () {
 // Kết thúc bài tập 1
 
 // Bài tập 2: Tính tiền điện 
-document.getElementById("calcmoney").onclick = function () {
-    let name = document.getElementById("txtname").value;
-    let numberkw = +document.getElementById("numberkw").value;
-
+function calcKW(numberkw) {
     let bac1 = 500; // 50kw đầu = 500d/kw
     let bac2 = 650; // 50kw kế = 650d/kw
     let bac3 = 850; // 100kw  kể = 850d/kw
     let bac4 = 1100; // 150kw kể = 1100d/kw
     let bac5 = 1300; // còn lại = 1300d/kw 
 
-    let result = 0;
-    
     if (numberkw === 0) {
         alert("Số kw không hợp lệ! Vui lòng nhập lại");
     }
     else {
         if (numberkw <= 50) {
-            result = bac1 * numberkw;
+            return bac1 * numberkw;
         }
         else if (numberkw > 50 && numberkw <=100) {
-            result = 50 * bac1 + (numberkw - 50) * bac2;
+            return 50 * bac1 + (numberkw - 50) * bac2;
         }
         else if (numberkw > 100 && numberkw <= 200) {
-            result = (50 * bac1) + (50 * bac2) + (numberkw - 100) * bac3;
+            return (50 * bac1) + (50 * bac2) + (numberkw - 100) * bac3;
         }
         else if (numberkw > 200 && numberkw <= 350) {
-            result = (50 * bac1) + (50 * bac2) + (50 * bac3) + (numberkw - 200) * bac4;
+            return (50 * bac1) + (50 * bac2) + (50 * bac3) + (numberkw - 200) * bac4;
         }
         else if (numberkw > 350) {
-            result = (50 * bac1) + (50 * bac2) + (50 * bac3) + (50 * bac4) + (numberkw - 350) * bac5;
+            return (50 * bac1) + (50 * bac2) + (50 * bac3) + (50 * bac4) + (numberkw - 350) * bac5;
         }
     }
+}
+
+document.getElementById("calcmoney").onclick = function () {
+    let name = document.getElementById("txtname").value;
+    let numberkw = +document.getElementById("numberkw").value;
 
      // Hiển thị kết quả
      document.getElementById("result-calcmoney").style.display = "block";
-     document.getElementById("result-b2").innerHTML = "Họ tên: " + name + "; Tiền điện: " + Intl.NumberFormat('vn-VN').format(result);
+     document.getElementById("result-b2").innerHTML = "Họ tên: " + name + "; Tiền điện: " + Intl.NumberFormat('vn-VN').format(calcKW(numberkw)) + " VND";
 }
 // Kết thúc bài tập 2
